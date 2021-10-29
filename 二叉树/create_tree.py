@@ -5,7 +5,7 @@ class TreeNode:
     '''初始化树节点'''
 
     def __init__(self, root=0, left=None, right=None):
-        self.root = root
+        self.val = root
         self.left = left
         self.right = right
 
