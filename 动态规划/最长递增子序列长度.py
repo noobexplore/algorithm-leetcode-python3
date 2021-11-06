@@ -1,4 +1,3 @@
-import time
 from typing import List
 
 
@@ -45,10 +44,18 @@ class Solution():
             return max_seq
         
         return max([get_SeqLength(n, j) for j in range(len(n))])
+    
+    def findMaxSequence_reverse(self, n: List[int]) -> int:
+        '''这里利用反向的推导进行一个动态规划'''
+        dp = [1]*len(n)
+        for i in range(len(n)-1, -1, -1):
+            for j in range(i+1, len(n)):
+                if n[j] > n[i]:
+                    dp[i] = max(dp[j]+1, dp[i])
+        return dp[0]
+        
 
 if __name__ == "__main__":
-    start = time.time()
     n = [1, 5, 2, 3, 4]
     solution = Solution()
-    maxseq = solution.findMaxSequence(n)
-    end = time.time() - start
+    maxseq = solution.findMaxSequence_reverse(n)
