@@ -27,10 +27,19 @@ class Solution:
         for i in range(1, len(nums)):
             dp[i] = max(dp[i-1], 0) + nums[i]
         return max(dp)
+    
+    def maxSubArray_dynamic2(self, nums: List[int]) -> int:
+        """改进版，用一个变量进行存储最大即可"""
+        cur = nums[0]
+        max_sum = cur
+        for i in range(1, len(nums)):
+            cur = max(cur, 0) + nums[i]
+            max_sum = max(cur, max_sum)
+        return max_sum
 
 
 if __name__ == '__main__':
     solution = Solution()
     n = [-2,1,-3,4,-1,2,1,-5,4]
-    maxsum = solution.maxSubArray_dynamic(n)
+    maxsum = solution.maxSubArray_dynamic2(n)
     pass
