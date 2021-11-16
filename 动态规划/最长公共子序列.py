@@ -35,14 +35,15 @@ class Solution:
             - 返回的值就为dp[-1]
         """
         dp = [0 for _ in range(len(text1)+1)]
-        temp = 0
-        for i in range(1, len(text1)+1):
-            for j in range(1, len(text2)+1):
-                if text2[j-1] == text1[i-1]:
-                    dp[i] = dp[i-1] + 1
-                    temp = dp[i-1] + 1
+        for i in range(1, len(text2)+1):
+            prev = dp[0]
+            for j in range(1, len(text1)+1):
+                tmp = dp[j]
+                if text2[i-1] == text1[j-1]:
+                    dp[j] = prev + 1
                 else:
-                    dp[i] = max(temp, dp[i-1])
+                    dp[j] = max(tmp, dp[j-1])
+                prev = tmp
         return dp[-1]
 
 
