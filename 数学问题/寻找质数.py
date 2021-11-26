@@ -9,6 +9,7 @@ class Solution:
         sq = int(math.sqrt(n))
         for i in range(2, sq):
             for j in range(i**2, n, i):
+                # 核心为以上如何标记合数
                 if isPrimes[i]:
                     isPrimes[j] = False
         # 然后最终计数数组中为true的个数
